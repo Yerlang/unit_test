@@ -22,7 +22,7 @@ public class TestSetupDelegated extends TestBase {
 
     @Test
     public void testFindById() {
-        init();
+        setup();
         Student student = studentService.findById(1);
         Assert.assertNotNull(student);
         Assert.assertEquals(student.getName(), "张三");
@@ -30,7 +30,7 @@ public class TestSetupDelegated extends TestBase {
 
     @Test
     public void testUpdate() {
-        init();
+        setup();
         int age = 20;
         studentService.updateAgeById(age, 1);
         Student student = studentService.findById(1);
@@ -38,14 +38,14 @@ public class TestSetupDelegated extends TestBase {
         Assert.assertTrue(age == student.getAge());
     }
 
-    public void init() {
+    public void setup() {
         studentService.add(new Student(1, "张三", 10));
         studentService.add(new Student(2, "小明", 10));
         studentService.add(new Student(3, "小红", 10));
     }
 
     @After
-    public void clear() {
+    public void teardown() {
         studentService.deleteByIds(Lists.newArrayList(1, 2, 3));
     }
 }

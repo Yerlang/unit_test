@@ -35,7 +35,7 @@ public class TestSpy extends TestBase {
     private DingTalkService dingTalkService;
 
     @Before
-    public void setUp() throws Exception {
+    public void setup() throws Exception {
         MockitoAnnotations.openMocks(this);
         studentService.add(new Student(1, "张三", 10));
         studentService.add(new Student(2, "小明", 10));
@@ -56,7 +56,7 @@ public class TestSpy extends TestBase {
     }
 
     @After
-    public void tearDown() {
+    public void teardown() {
         studentService.deleteByIds(Lists.newArrayList(1, 2, 3));
         teacherService.deleteByIds(Lists.newArrayList(1, 2, 3));
     }

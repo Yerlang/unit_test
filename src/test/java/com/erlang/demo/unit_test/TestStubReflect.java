@@ -34,7 +34,7 @@ public class TestStubReflect extends TestBase {
     List<Student> students = Lists.newArrayList();
 
     @Before
-    public void before() throws Exception {
+    public void setup() throws Exception {
         MockitoAnnotations.openMocks(this);
 
         students.add(new Student(1, "张三", 10));

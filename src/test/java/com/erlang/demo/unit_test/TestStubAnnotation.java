@@ -35,7 +35,7 @@ public class TestStubAnnotation extends TestBase {
     List<Student> students = Lists.newArrayList();
 
     @Before
-    public void before() {
+    public void setup() {
         MockitoAnnotations.openMocks(this);
 
         students.add(new Student(1, "张三", 10));

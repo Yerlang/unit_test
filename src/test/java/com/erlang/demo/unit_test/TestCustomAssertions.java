@@ -36,7 +36,7 @@ public class TestCustomAssertions extends TestBase {
     }
 
     @Before
-    public void init() {
+    public void setup() {
         studentService.add(new Student(1, "张三", 10));
         studentService.add(new Student(2, "小明", 10));
         studentService.add(new Student(3, "小红", 10));
@@ -44,7 +44,7 @@ public class TestCustomAssertions extends TestBase {
     }
 
     @After
-    public void clear() {
+    public void teardown() {
         studentService.deleteByIds(Lists.newArrayList(1, 2, 3, 4));
     }
 }

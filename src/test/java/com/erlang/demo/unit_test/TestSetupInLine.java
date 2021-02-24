@@ -44,7 +44,7 @@ public class TestSetupInLine extends TestBase {
     }
 
     @After
-    public void clear() {
+    public void teardown() {
         studentService.deleteByIds(Lists.newArrayList(1, 2, 3));
     }
 }
