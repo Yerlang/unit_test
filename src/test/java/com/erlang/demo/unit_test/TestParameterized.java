@@ -1,11 +1,15 @@
 package com.erlang.demo.unit_test;
 
 import com.alibaba.fastjson.JSON;
+import com.erlang.demo.TestBase;
+import com.erlang.demo.unit_test.service.StudentService;
 import com.erlang.demo.unit_test.utils.CalculateUtil;
 import com.erlang.demo.unit_test.utils.DateUtil;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,7 +22,15 @@ import java.util.List;
  * @author yj
  * @since 2021-02-07 8:50
  */
-public class TestParameterized {
+public class TestParameterized extends TestBase {
+
+    @Autowired
+    private StudentService studentService;
+
+    @Before
+    public void setup() {
+
+    }
 
     @ParameterizedTest
     @ValueSource(ints = {-1, -2, -3, -6, -7, -10})
