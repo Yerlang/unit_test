@@ -42,6 +42,14 @@ public interface StudentService {
     void updateAgeById(int age, int id);
 
     /**
+     * 更新姓名
+     *
+     * @param name 姓名
+     * @param id   学生 id
+     */
+    void updateNameById(String name, int id);
+
+    /**
      * 根据学生 id 删除学生信息
      *
      * @param ids 学生 id 列表

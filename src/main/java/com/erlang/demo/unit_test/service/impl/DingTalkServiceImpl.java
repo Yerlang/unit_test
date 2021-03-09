@@ -13,6 +13,6 @@ public class DingTalkServiceImpl implements DingTalkService {
 
     @Override
     public void sendNotice(DingTalkMessage message) {
-
+        System.out.println(12);
     }
 }

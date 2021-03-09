@@ -4,6 +4,7 @@ import com.erlang.demo.unit_test.domain.Student;
 import com.erlang.demo.unit_test.service.TeacherService;
 import com.erlang.demo.unit_test.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -22,12 +23,30 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private TeacherService teacherService;
 
+    @Value("${test_use}")
+    private String testUse;
+
     @Override
     public Student findById(int id) {
         return students.stream()
                 .filter(s -> Objects.equals(s.getId(), id))
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public void updateNameById(String name, int id) {
+        Student student = students.stream()
+                .filter(s -> Objects.equals(s.getId(), id))
+                .findFirst()
+                .orElse(null);
+        if (student == null) {
+            throw new RuntimeException("学生不存在");
+        }
+        if ("test".equals(testUse)) {
+            name = "test";
+        }
+        student.setName(name);
     }
 
     @Override
@@ -52,7 +71,7 @@ public class StudentServiceImpl implements StudentService {
                 .findFirst()
                 .orElse(null);
         if (student == null) {
-            return;
+            throw new RuntimeException("学生不存在");
         }
         student.setAge(age);
     }

@@ -20,10 +20,10 @@ public class AspectTest {
 
     @Around("pointCut()")
     public Object aroundGeneral(ProceedingJoinPoint point) throws Throwable {
-        System.out.println("方法执行之前");
+        System.out.println("方法执行之前....");
         Object[] args = point.getArgs();
         Object result = point.proceed(args);
-        System.out.println("方法执行完毕");
+        System.out.println("方法执行完毕....");
         return result;
     }
 }
