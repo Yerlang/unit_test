@@ -11,12 +11,18 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * Implicit Setup
+ * Teardown 和 SetUp 一样也有三种实现方式
+ * <p>
+ * In-line Fixture Teardown
+ * Delegated Teardown
+ * Implicit Teardown
+ * <p>
+ * 这里仅实现 Implicit Teardown
  *
  * @author yj
- * @since 2021-02-01 8:21
+ * @since 2021-02-02 8:38
  */
-public class TestSetupImplicit extends TestBase {
+public class TestFreshFuture extends TestBase {
 
     @Autowired
     private StudentService studentService;
@@ -26,6 +32,8 @@ public class TestSetupImplicit extends TestBase {
         Student student = studentService.findById(1);
         Assert.assertNotNull(student);
         Assert.assertEquals(student.getName(), "张三");
+
+        System.out.println("run testFindById...");
     }
 
     @Test
@@ -34,11 +42,14 @@ public class TestSetupImplicit extends TestBase {
         studentService.updateAgeById(age, 1);
         Student student = studentService.findById(1);
         Assert.assertNotNull(student);
-        Assert.assertEquals(age, student.getAge());
+        Assert.assertTrue(age == student.getAge());
+
+        System.out.println("run testUpdate...");
     }
 
     @Before
     public void setup() {
+        System.out.println("run setup...");
         studentService.add(new Student(1, "张三", 10));
         studentService.add(new Student(2, "小明", 10));
         studentService.add(new Student(3, "小红", 10));
@@ -46,6 +57,7 @@ public class TestSetupImplicit extends TestBase {
 
     @After
     public void teardown() {
+        System.out.println("run teardown...");
         studentService.deleteByIds(Lists.newArrayList(1, 2, 3));
     }
 }

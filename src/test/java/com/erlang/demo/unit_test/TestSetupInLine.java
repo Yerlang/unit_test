@@ -40,7 +40,7 @@ public class TestSetupInLine extends TestBase {
         studentService.updateAgeById(age, 1);
         Student student = studentService.findById(1);
         Assert.assertNotNull(student);
-        Assert.assertTrue(age == student.getAge());
+        Assert.assertEquals(age, student.getAge());
     }
 
     @After
